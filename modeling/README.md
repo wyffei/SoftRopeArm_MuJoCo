@@ -33,13 +33,14 @@ modeling/
 └── README.md
 ```
 
-> **Known gap:** `module.xml` references 10 mesh files under `xml/STL/`
-> (`bottom_4x.stl`, `rib_seg2.stl`, `rib_seg3L.stl`, `rib_seg3R.stl`,
-> `rib_seg4.stl`, `rib_seg5L.stl`, `rib_seg5R.stl`, `rib_seg6.stl`,
-> `bottom_collision.stl`, `top_4x.stl`), but `xml/STL/` doesn't exist in this
-> repository — so `scene4.xml` currently fails to load. Files with matching
-> names exist under [`rl/STL/`](../rl/STL/); copy or symlink them into
-> `modeling/xml/STL/` before running `compute_4.py`.
+> **Meshes are not included.** `module.xml` references 10 proprietary CAD mesh
+> files under `xml/STL/` (`bottom_4x.stl`, `rib_seg2.stl`, `rib_seg3L.stl`,
+> `rib_seg3R.stl`, `rib_seg4.stl`, `rib_seg5L.stl`, `rib_seg5R.stl`,
+> `rib_seg6.stl`, `bottom_collision.stl`, `top_4x.stl`). These are not
+> distributable and are excluded from this repository (`xml/STL/` is
+> git-ignored) — obtain them separately and place them at `modeling/xml/STL/`
+> before running `compute_4.py` or `merge.py`. `rl/` needs the same files
+> under `rl/STL/` — see [`rl/README_RL.md`](../rl/README_RL.md).
 
 ## Usage
 

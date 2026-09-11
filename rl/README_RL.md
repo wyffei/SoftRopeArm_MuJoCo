@@ -16,6 +16,15 @@ All scripts below assume they are run from `rl/`, next to `scene.xml`.
 seats, reaching toward a tray table — this is the environment `rope_arm_reach_env.py`
 and `collect_air_scene_dataset.py` both simulate.
 
+> **Meshes are not included.** `scene.xml` references 10 proprietary CAD mesh
+> files under `STL/` (`bottom_4x.stl`, `rib_seg2.stl`, `rib_seg3L.stl`,
+> `rib_seg3R.stl`, `rib_seg4.stl`, `rib_seg5L.stl`, `rib_seg5R.stl`,
+> `rib_seg6.stl`, `bottom_collision.stl`, `top_4x.stl`). These are not
+> distributable and are excluded from this repository (`STL/` is
+> git-ignored) — obtain them separately and place them at `rl/STL/` before
+> running any script here. `modeling/` needs the same files under
+> `modeling/xml/STL/` — see [`modeling/README.md`](../modeling/README.md).
+
 ## Files
 
 | File | Purpose |
