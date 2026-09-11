@@ -1,0 +1,7 @@
+# These are machine-assembled/generated model files and a generated plot,
+# not hand-authored source. Excluding them keeps GitHub's language stats
+# reflecting the actual Python/XML source rather than generated bulk.
+modeling/xml/module.xml linguist-generated=true
+rl/module_body.xml linguist-generated=true
+rl/scene.xml linguist-generated=true
+rl/interactive_6rope_workspace.html linguist-generated=true
