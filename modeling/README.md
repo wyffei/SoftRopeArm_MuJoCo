@@ -17,10 +17,10 @@ The goal of this stage is to build the arm model consumed by [`rl/`](../rl/READM
 ```text
 modeling/
 ├── xml/                 # XML templates and generated MuJoCo models
-│   ├── 1.xml              # base module template (source for merge.py's step-1 scaling)
-│   ├── base.xml            # environment template (source for merge.py's step-3)
-│   ├── module.xml          # pre-assembled 20-module arm, used directly by scene4.xml
-│   ├── object4.xml         # grasped-object + desk definition, used by scene4.xml
+│   ├── 1.xml              # base module template
+│   ├── base.xml            # environment template 
+│   ├── module.xml          # pre-assembled 20-module arm
+│   ├── object4.xml         # grasped-object + desk definition
 │   └── scene4.xml          # standalone scene: includes module.xml + object4.xml
 ├── py/                   # per-step generation scripts used by merge.py
 │   ├── 1scale_new_module.py
@@ -33,14 +33,15 @@ modeling/
 └── README.md
 ```
 
-> **Meshes are not included.** `module.xml` references 10 proprietary CAD mesh
-> files under `xml/STL/` (`bottom_4x.stl`, `rib_seg2.stl`, `rib_seg3L.stl`,
+> **Meshes are not included.** `module.xml` references 10 CAD mesh files
+> under `xml/STL/` (`bottom_4x.stl`, `rib_seg2.stl`, `rib_seg3L.stl`,
 > `rib_seg3R.stl`, `rib_seg4.stl`, `rib_seg5L.stl`, `rib_seg5R.stl`,
-> `rib_seg6.stl`, `bottom_collision.stl`, `top_4x.stl`). These are not
-> distributable and are excluded from this repository (`xml/STL/` is
-> git-ignored) — obtain them separately and place them at `modeling/xml/STL/`
-> before running `compute_4.py` or `merge.py`. `rl/` needs the same files
-> under `rl/STL/` — see [`rl/README_RL.md`](../rl/README_RL.md).
+> `rib_seg6.stl`, `bottom_collision.stl`, `top_4x.stl`). These are
+> confidential and cannot be made public, so they're excluded from this
+> repository (`xml/STL/` is git-ignored)
+
+> `rl/` needs the same files under `rl/STL/` — see
+> [`rl/README_RL.md`](../rl/README_RL.md).
 
 ## Usage
 

@@ -3,5 +3,5 @@ __pycache__/
 rl_logs/
 rl_models/checkpoints/
 
-# Proprietary CAD meshes, not distributable — see README_RL.md.
+# Confidential CAD meshes, cannot be made public — see README_RL.md.
 STL/
