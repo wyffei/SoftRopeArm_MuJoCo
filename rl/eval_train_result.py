@@ -9,7 +9,7 @@ from rope_arm_reach_env import RopeArmEnvConfig, RopeArmReachEnv, RopePIDConfig
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", type=Path, default=Path("rl_models/sac_rope_arm_reference_then_rl_SAC8.zip"))
+    parser.add_argument("--model", type=Path, default=Path("rl_models/sac_rope_arm_reference_then_rl.zip"))
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parent)
     parser.add_argument("--xml", type=str, default="scene.xml")
     parser.add_argument("--dataset", type=str, default="dataset/workspace_6rope.csv")

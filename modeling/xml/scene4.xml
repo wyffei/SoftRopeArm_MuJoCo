@@ -1,6 +1,6 @@
 <mujoco model="arm scene">
   <include file="module.xml"/>
-  <include file="object.xml"/>
+  <include file="object4.xml"/>
   <!-- 默认摄像机的行为 -->
   <statistic center="0.3 0 0.4" extent="1"/>
   <visual>
