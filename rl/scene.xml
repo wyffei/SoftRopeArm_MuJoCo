@@ -1,0 +1,1443 @@
+<?xml version='1.0' encoding='utf-8'?>
+<mujoco model="aircraft_cabin">
+  <compiler angle="radian" texturedir="textures" coordinate="local" inertiafromgeom="false" balanceinertia="true" />
+  <option timestep="0.002" gravity="0 0 -9.8" solver="Newton" />
+  <size njmax="4000" nconmax="1000" />
+  <statistic center="0 0 0.6" extent="3" />
+  <visual>
+    <headlight diffuse="0.9 0.9 0.9" ambient="0.6 0.6 0.6" specular="0.1 0.1 0.1" />
+    <rgba haze="0.8 0.9 1.0 1" />
+    <global azimuth="120" elevation="-20" offwidth="1280" offheight="720"/>
+  </visual>
+  <asset>
+    <texture type="skybox" builtin="gradient" rgb1="0.45 0.60 0.75" rgb2="0.78 0.85 0.92" width="512" height="3072" />
+    <texture name="room_tex" type="2d" file="Passanger_body_1002_BaseColor.png" />
+    <material name="room_mat" texture="room_tex" specular="0.15" shininess="0.25" />
+    <texture name="seat_tex" type="2d" file="Passanger_body_1012_BaseColor.png" />
+    <material name="seat_mat" texture="seat_tex" specular="0.15" shininess="0.25" emission="0.08" />
+    <material name="carpet_floor_mat" rgba="0.015 0.055 0.09 1" specular="0.04" shininess="0.08" />
+    <mesh name="room_mesh" file="meshes/aircraft_room.obj" scale="0.1 0.1 0.1" />
+    <mesh name="seat_mesh" file="meshes/aircraft_seats.obj" scale="0.1 0.1 0.1" />
+    <mesh name="m20_seg2_m" file="STL/rib_seg2.stl" scale="0.66728899 0.66728899 0.66728899" />
+    <mesh name="m20_seg5L_m" file="STL/rib_seg5L.stl" scale="0.66728899 0.66728899 0.66728899" />
+    <mesh name="m20_seg5R_m" file="STL/rib_seg5R.stl" scale="0.66728899 0.66728899 0.66728899" />
+    <mesh name="m20_seg6_m" file="STL/rib_seg6.stl" scale="0.66728899 0.66728899 0.66728899" />
+    <mesh name="m20_seg4_m" file="STL/rib_seg4.stl" scale="0.66728899 0.66728899 0.66728899" />
+    <mesh name="m20_seg3L_m" file="STL/rib_seg3L.stl" scale="0.66728899 0.66728899 0.66728899" />
+    <mesh name="m20_seg3R_m" file="STL/rib_seg3R.stl" scale="0.66728899 0.66728899 0.66728899" />
+    <mesh name="m20_bottom" file="STL/bottom_4x.stl" scale="0.66728899 0.66728899 0.66728899" />
+    <mesh name="bottom20_col" file="STL/bottom_collision.stl" scale="0.66728898 0.66728898 0.66728898" />
+    <mesh name="m20_top" file="STL/top_4x.stl" scale="0.66728898 0.66728898 0.66728898" />
+    <mesh name="m19_seg2_m" file="STL/rib_seg2.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m19_seg5L_m" file="STL/rib_seg5L.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m19_seg5R_m" file="STL/rib_seg5R.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m19_seg6_m" file="STL/rib_seg6.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m19_seg4_m" file="STL/rib_seg4.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m19_seg3L_m" file="STL/rib_seg3L.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m19_seg3R_m" file="STL/rib_seg3R.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m19_bottom" file="STL/bottom_4x.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="bottom19_col" file="STL/bottom_collision.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m19_top" file="STL/top_4x.stl" scale="0.72352104 0.72352104 0.72352104" />
+    <mesh name="m18_seg2_m" file="STL/rib_seg2.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m18_seg5L_m" file="STL/rib_seg5L.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m18_seg5R_m" file="STL/rib_seg5R.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m18_seg6_m" file="STL/rib_seg6.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m18_seg4_m" file="STL/rib_seg4.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m18_seg3L_m" file="STL/rib_seg3L.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m18_seg3R_m" file="STL/rib_seg3R.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m18_bottom" file="STL/bottom_4x.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="bottom18_col" file="STL/bottom_collision.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m18_top" file="STL/top_4x.stl" scale="0.78449174 0.78449174 0.78449174" />
+    <mesh name="m17_seg2_m" file="STL/rib_seg2.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m17_seg5L_m" file="STL/rib_seg5L.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m17_seg5R_m" file="STL/rib_seg5R.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m17_seg6_m" file="STL/rib_seg6.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m17_seg4_m" file="STL/rib_seg4.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m17_seg3L_m" file="STL/rib_seg3L.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m17_seg3R_m" file="STL/rib_seg3R.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m17_bottom" file="STL/bottom_4x.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="bottom17_col" file="STL/bottom_collision.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m17_top" file="STL/top_4x.stl" scale="0.8506004 0.8506004 0.8506004" />
+    <mesh name="m16_seg2_m" file="STL/rib_seg2.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m16_seg5L_m" file="STL/rib_seg5L.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m16_seg5R_m" file="STL/rib_seg5R.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m16_seg6_m" file="STL/rib_seg6.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m16_seg4_m" file="STL/rib_seg4.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m16_seg3L_m" file="STL/rib_seg3L.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m16_seg3R_m" file="STL/rib_seg3R.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m16_bottom" file="STL/bottom_4x.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="bottom16_col" file="STL/bottom_collision.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m16_top" file="STL/top_4x.stl" scale="0.92228 0.92228 0.92228" />
+    <mesh name="m15_seg2_m" file="STL/rib_seg2.stl" scale="1 1 1" />
+    <mesh name="m15_seg5L_m" file="STL/rib_seg5L.stl" scale="1 1 1" />
+    <mesh name="m15_seg5R_m" file="STL/rib_seg5R.stl" scale="1 1 1" />
+    <mesh name="m15_seg6_m" file="STL/rib_seg6.stl" scale="1 1 1" />
+    <mesh name="m15_seg4_m" file="STL/rib_seg4.stl" scale="1 1 1" />
+    <mesh name="m15_seg3L_m" file="STL/rib_seg3L.stl" scale="1 1 1" />
+    <mesh name="m15_seg3R_m" file="STL/rib_seg3R.stl" scale="1 1 1" />
+    <mesh name="m15_bottom" file="STL/bottom_4x.stl" scale="1 1 1" />
+    <mesh name="bottom15_col" file="STL/bottom_collision.stl" scale="1 1 1" />
+    <mesh name="m15_top" file="STL/top_4x.stl" scale="1 1 1" />
+    <mesh name="m14_seg2_m" file="STL/rib_seg2.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m14_seg5L_m" file="STL/rib_seg5L.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m14_seg5R_m" file="STL/rib_seg5R.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m14_seg6_m" file="STL/rib_seg6.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m14_seg4_m" file="STL/rib_seg4.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m14_seg3L_m" file="STL/rib_seg3L.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m14_seg3R_m" file="STL/rib_seg3R.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m14_bottom" file="STL/bottom_4x.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="bottom14_col" file="STL/bottom_collision.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m14_top" file="STL/top_4x.stl" scale="1.0842694 1.0842694 1.0842694" />
+    <mesh name="m13_seg2_m" file="STL/rib_seg2.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m13_seg5L_m" file="STL/rib_seg5L.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m13_seg5R_m" file="STL/rib_seg5R.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m13_seg6_m" file="STL/rib_seg6.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m13_seg4_m" file="STL/rib_seg4.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m13_seg3L_m" file="STL/rib_seg3L.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m13_seg3R_m" file="STL/rib_seg3R.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m13_bottom" file="STL/bottom_4x.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="bottom13_col" file="STL/bottom_collision.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m13_top" file="STL/top_4x.stl" scale="1.1756402 1.1756402 1.1756402" />
+    <mesh name="m12_seg2_m" file="STL/rib_seg2.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m12_seg5L_m" file="STL/rib_seg5L.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m12_seg5R_m" file="STL/rib_seg5R.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m12_seg6_m" file="STL/rib_seg6.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m12_seg4_m" file="STL/rib_seg4.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m12_seg3L_m" file="STL/rib_seg3L.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m12_seg3R_m" file="STL/rib_seg3R.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m12_bottom" file="STL/bottom_4x.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="bottom12_col" file="STL/bottom_collision.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m12_top" file="STL/top_4x.stl" scale="1.2747107 1.2747107 1.2747107" />
+    <mesh name="m11_seg2_m" file="STL/rib_seg2.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m11_seg5L_m" file="STL/rib_seg5L.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m11_seg5R_m" file="STL/rib_seg5R.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m11_seg6_m" file="STL/rib_seg6.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m11_seg4_m" file="STL/rib_seg4.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m11_seg3L_m" file="STL/rib_seg3L.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m11_seg3R_m" file="STL/rib_seg3R.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m11_bottom" file="STL/bottom_4x.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="bottom11_col" file="STL/bottom_collision.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m11_top" file="STL/top_4x.stl" scale="1.3821298 1.3821298 1.3821298" />
+    <mesh name="m10_seg2_m" file="STL/rib_seg2.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m10_seg5L_m" file="STL/rib_seg5L.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m10_seg5R_m" file="STL/rib_seg5R.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m10_seg6_m" file="STL/rib_seg6.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m10_seg4_m" file="STL/rib_seg4.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m10_seg3L_m" file="STL/rib_seg3L.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m10_seg3R_m" file="STL/rib_seg3R.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m10_bottom" file="STL/bottom_4x.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="bottom10_col" file="STL/bottom_collision.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m10_top" file="STL/top_4x.stl" scale="1.4986011 1.4986011 1.4986011" />
+    <mesh name="m9_seg2_m" file="STL/rib_seg2.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m9_seg5L_m" file="STL/rib_seg5L.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m9_seg5R_m" file="STL/rib_seg5R.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m9_seg6_m" file="STL/rib_seg6.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m9_seg4_m" file="STL/rib_seg4.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m9_seg3L_m" file="STL/rib_seg3L.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m9_seg3R_m" file="STL/rib_seg3R.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m9_bottom" file="STL/bottom_4x.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="bottom9_col" file="STL/bottom_collision.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m9_top" file="STL/top_4x.stl" scale="1.6248873 1.6248873 1.6248873" />
+    <mesh name="m8_seg2_m" file="STL/rib_seg2.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m8_seg5L_m" file="STL/rib_seg5L.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m8_seg5R_m" file="STL/rib_seg5R.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m8_seg6_m" file="STL/rib_seg6.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m8_seg4_m" file="STL/rib_seg4.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m8_seg3L_m" file="STL/rib_seg3L.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m8_seg3R_m" file="STL/rib_seg3R.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m8_bottom" file="STL/bottom_4x.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="bottom8_col" file="STL/bottom_collision.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m8_top" file="STL/top_4x.stl" scale="1.7618157 1.7618157 1.7618157" />
+    <mesh name="m7_seg2_m" file="STL/rib_seg2.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m7_seg5L_m" file="STL/rib_seg5L.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m7_seg5R_m" file="STL/rib_seg5R.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m7_seg6_m" file="STL/rib_seg6.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m7_seg4_m" file="STL/rib_seg4.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m7_seg3L_m" file="STL/rib_seg3L.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m7_seg3R_m" file="STL/rib_seg3R.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m7_bottom" file="STL/bottom_4x.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="bottom7_col" file="STL/bottom_collision.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m7_top" file="STL/top_4x.stl" scale="1.9102828 1.9102828 1.9102828" />
+    <mesh name="m6_seg2_m" file="STL/rib_seg2.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m6_seg5L_m" file="STL/rib_seg5L.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m6_seg5R_m" file="STL/rib_seg5R.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m6_seg6_m" file="STL/rib_seg6.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m6_seg4_m" file="STL/rib_seg4.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m6_seg3L_m" file="STL/rib_seg3L.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m6_seg3R_m" file="STL/rib_seg3R.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m6_bottom" file="STL/bottom_4x.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="bottom6_col" file="STL/bottom_collision.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m6_top" file="STL/top_4x.stl" scale="2.0712613 2.0712613 2.0712613" />
+    <mesh name="m5_seg2_m" file="STL/rib_seg2.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m5_seg5L_m" file="STL/rib_seg5L.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m5_seg5R_m" file="STL/rib_seg5R.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m5_seg6_m" file="STL/rib_seg6.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m5_seg4_m" file="STL/rib_seg4.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m5_seg3L_m" file="STL/rib_seg3L.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m5_seg3R_m" file="STL/rib_seg3R.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m5_bottom" file="STL/bottom_4x.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="bottom5_col" file="STL/bottom_collision.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m5_top" file="STL/top_4x.stl" scale="2.2458052 2.2458052 2.2458052" />
+    <mesh name="m4_seg2_m" file="STL/rib_seg2.stl" scale="2.435058 2.435058 2.435058" />
+    <mesh name="m4_seg5L_m" file="STL/rib_seg5L.stl" scale="2.435058 2.435058 2.435058" />
+    <mesh name="m4_seg5R_m" file="STL/rib_seg5R.stl" scale="2.435058 2.435058 2.435058" />
+    <mesh name="m4_seg6_m" file="STL/rib_seg6.stl" scale="2.435058 2.435058 2.435058" />
+    <mesh name="m4_seg4_m" file="STL/rib_seg4.stl" scale="2.435058 2.435058 2.435058" />
+    <mesh name="m4_seg3L_m" file="STL/rib_seg3L.stl" scale="2.435058 2.435058 2.435058" />
+    <mesh name="m4_seg3R_m" file="STL/rib_seg3R.stl" scale="2.435058 2.435058 2.435058" />
+    <mesh name="m4_bottom" file="STL/bottom_4x.stl" scale="2.435058 2.435058 2.435058" />
+    <mesh name="bottom4_col" file="STL/bottom_collision.stl" scale="2.4350579 2.4350579 2.4350579" />
+    <mesh name="m4_top" file="STL/top_4x.stl" scale="2.4350579 2.4350579 2.4350579" />
+    <mesh name="m3_seg2_m" file="STL/rib_seg2.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m3_seg5L_m" file="STL/rib_seg5L.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m3_seg5R_m" file="STL/rib_seg5R.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m3_seg6_m" file="STL/rib_seg6.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m3_seg4_m" file="STL/rib_seg4.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m3_seg3L_m" file="STL/rib_seg3L.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m3_seg3R_m" file="STL/rib_seg3R.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m3_bottom" file="STL/bottom_4x.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="bottom3_col" file="STL/bottom_collision.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m3_top" file="STL/top_4x.stl" scale="2.6402589 2.6402589 2.6402589" />
+    <mesh name="m2_seg2_m" file="STL/rib_seg2.stl" scale="2.862752 2.862752 2.862752" />
+    <mesh name="m2_seg5L_m" file="STL/rib_seg5L.stl" scale="2.862752 2.862752 2.862752" />
+    <mesh name="m2_seg5R_m" file="STL/rib_seg5R.stl" scale="2.862752 2.862752 2.862752" />
+    <mesh name="m2_seg6_m" file="STL/rib_seg6.stl" scale="2.862752 2.862752 2.862752" />
+    <mesh name="m2_seg4_m" file="STL/rib_seg4.stl" scale="2.862752 2.862752 2.862752" />
+    <mesh name="m2_seg3L_m" file="STL/rib_seg3L.stl" scale="2.862752 2.862752 2.862752" />
+    <mesh name="m2_seg3R_m" file="STL/rib_seg3R.stl" scale="2.862752 2.862752 2.862752" />
+    <mesh name="m2_bottom" file="STL/bottom_4x.stl" scale="2.862752 2.862752 2.862752" />
+    <mesh name="bottom2_col" file="STL/bottom_collision.stl" scale="2.8627519 2.8627519 2.8627519" />
+    <mesh name="m2_top" file="STL/top_4x.stl" scale="2.8627519 2.8627519 2.8627519" />
+    <mesh name="m1_seg2_m" file="STL/rib_seg2.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg5L_m" file="STL/rib_seg5L.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg5R_m" file="STL/rib_seg5R.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg6_m" file="STL/rib_seg6.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg4_m" file="STL/rib_seg4.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg3L_m" file="STL/rib_seg3L.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_seg3R_m" file="STL/rib_seg3R.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="m1_bottom" file="STL/bottom_4x.stl" scale="3.1039944 3.1039944 3.1039944" />
+    <mesh name="bottom1_col" file="STL/bottom_collision.stl" scale="3.103994388566468 3.103994388566468 3.103994388566468" />
+    <mesh name="m1_top" file="STL/top_4x.stl" scale="3.103994388566468 3.103994388566468 3.103994388566468" />
+  </asset>
+  <default>
+    <site type="sphere" size="0.0002" rgba="1 0 1 0" />
+    <default class="vis_mesh">
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="collision_capsule">
+      <geom contype="1" conaffinity="1" solref="0.002 1" solimp="0.97 0.995 0.0005" friction="0.6 0.02 0.01" rgba="1 0 0 0" type="capsule" size="0.0002" margin="0.0001" />
+    </default>
+    <default class="collision_disk">
+      <geom contype="1" conaffinity="1" solref="0.002 1" solimp="0.97 0.995 0.0005" friction="0.6 0.02 0.01" rgba="1 0 0 0" type="cylinder" />
+    </default>
+    <default class="m20">
+      <joint springref="0" damping="1.8486132e-05" stiffness="3.203785e-05" armature="4.3135365e-07" frictionloss="9.9352564e-06" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m19">
+      <joint springref="0" damping="2.1733039e-05" stiffness="4.4280468e-05" armature="4.1425225e-07" frictionloss="1.2664578e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m18">
+      <joint springref="0" damping="2.5550234e-05" stiffness="6.1201355e-05" armature="3.9782885e-07" frictionloss="1.6143672e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m17">
+      <joint springref="0" damping="3.0037882e-05" stiffness="8.4588218e-05" armature="3.8205657e-07" frictionloss="2.0578512e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m16">
+      <joint springref="0" damping="3.531374e-05" stiffness="0.0001169119" armature="3.6690959e-07" frictionloss="2.6231649e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m15">
+      <joint springref="0" damping="4.1516252e-05" stiffness="0.00016158742" armature="3.5236313e-07" frictionloss="3.3437763e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m14">
+      <joint springref="0" damping="4.8808173e-05" stiffness="0.00022333479" armature="3.3839338e-07" frictionloss="4.2623474e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m13">
+      <joint springref="0" damping="5.7380849e-05" stiffness="0.00030867768" armature="3.2497747e-07" frictionloss="5.4332598e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m12">
+      <joint springref="0" damping="6.7459232e-05" stiffness="0.00042663262" armature="3.1209344e-07" frictionloss="6.9258343e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m11">
+      <joint springref="0" damping="7.9307783e-05" stiffness="0.00058966167" armature="2.9972022e-07" frictionloss="8.8284351e-05" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m10">
+      <joint springref="0" damping="9.3237416e-05" stiffness="0.00081498897" armature="2.8783754e-07" frictionloss="0.00011253701" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m9">
+      <joint springref="0" damping="0.00010961365" stiffness="0.0011264206" armature="2.7642596e-07" frictionloss="0.00014345212" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m8">
+      <joint springref="0" damping="0.00012886621" stiffness="0.0015568594" armature="2.6546681e-07" frictionloss="0.00018285996" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m7">
+      <joint springref="0" damping="0.0001515003" stiffness="0.0021517819" armature="2.5494214e-07" frictionloss="0.00023309354" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m6">
+      <joint springref="0" damping="0.00017810983" stiffness="0.0029740419" armature="2.4483473e-07" frictionloss="0.00029712683" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m5">
+      <joint springref="0" damping="0.00020939308" stiffness="0.0041105119" armature="2.3512803e-07" frictionloss="0.00037875074" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m4">
+      <joint springref="0" damping="0.00024617091" stiffness="0.0056812611" armature="2.2580617e-07" frictionloss="0.00048279762" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m3">
+      <joint springref="0" damping="0.00028940842" stiffness="0.0078522404" armature="2.1685388e-07" frictionloss="0.00061542728" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m2">
+      <joint springref="0" damping="0.00034024016" stiffness="0.010852816" armature="2.0825652e-07" frictionloss="0.00078449174" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+    <default class="m1">
+      <joint springref="0" damping="4e-4" stiffness="0.015" armature="2e-7" frictionloss="1e-3" />
+      <geom type="mesh" contype="0" conaffinity="0" />
+    </default>
+  </default>
+  <worldbody>
+    <geom name="screen_visual" type="box" pos="-0.02 -0.3 1.1" size="0.01 0.2 0.1" rgba="0.2 0.4 0.8 0.35" mass="0.5" contype="0" conaffinity="0" />
+    <geom name="screen" type="box" pos="-0.02 -0.3 1.1" size="0.01 0.2 0.15" rgba="0.2 0.4 0.8 0.35" mass="0.5" contype="1" conaffinity="1" />
+    <site name="path1" pos="-0.01 -0.2 1.1" rgba="1 0 1 1" size="0.004"/>
+    <site name="path2" pos="-0.01 -0.4 1.1" rgba="1 0 1 1" size="0.004"/>
+    <geom name="tray" type="box" pos="0 -0.3 0.7" size="0.15 0.2 0.01" rgba="0.2 0.4 0.8 0.35" mass="0.5" contype="1" conaffinity="1" />
+    <site name="path3" pos="-0.05 -0.2 0.7" rgba="1 0 1 1" size="0.004"/>
+    <site name="path4" pos="-0.05 -0.4 0.7" rgba="1 0 1 1" size="0.004"/>
+    <geom name="seat" type="box" pos="0.02 -0.3 0.8" size="0.15 0.2 0.01" euler="0 1.3089969390 0" rgba="0.2 0.4 0.8 0.35" mass="0.5" contype="1" conaffinity="1" />
+    <geom name="extra_floor" type="box" pos="0 0 -0.03" size="4.2 2.8 0.01" material="carpet_floor_mat" contype="0" conaffinity="0" />
+    <light name="top_light" pos="0 0 4" dir="0 0 -1" directional="true" diffuse="0.9 0.9 0.9" ambient="0.35 0.35 0.35" />
+    <body name="cabin" pos="-3 -1 0.03" quat="0 0 0 1">
+      <geom name="room_visual" type="mesh" mesh="room_mesh" material="room_mat" contype="0" conaffinity="0" />
+      <geom name="seat_visual" type="mesh" mesh="seat_mesh" material="seat_mat" contype="0" conaffinity="0" />
+    </body>
+    <body name="moving_plate" pos="-0.4 -0.4 0">
+      <joint name="plate_tx" type="slide" axis="1 0 0" damping="80" armature="0.2" />
+      <joint name="plate_ty" type="slide" axis="0 1 0" damping="80" armature="0.2" />
+      <geom name="plate" type="box" pos="0 -0.05 0.80" size="0.1 0.1 0.01" rgba="0.2 0.4 0.8 0.35" mass="0.5" contype="1" conaffinity="1" />
+      <include file="module_body.xml" />
+    </body>
+  </worldbody>
+  <equality>
+    <weld body1="m20_seg5L" body2="m20_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m20_h5Ltop_a1" site2="m20_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Ltop_a2" site2="m20_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Rtop_a1" site2="m20_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Rtop_a2" site2="m20_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m20_seg5L_r1" body2="m20_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m20_h5Ltop_a1_r1" site2="m20_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Ltop_a2_r1" site2="m20_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Rtop_a1_r1" site2="m20_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Rtop_a2_r1" site2="m20_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m20_seg5L_r2" body2="m20_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m20_h5Ltop_a1_r2" site2="m20_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Ltop_a2_r2" site2="m20_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Rtop_a1_r2" site2="m20_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Rtop_a2_r2" site2="m20_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m20_seg5L_r3" body2="m20_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m20_h5Ltop_a1_r3" site2="m20_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Ltop_a2_r3" site2="m20_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Rtop_a1_r3" site2="m20_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m20_h5Rtop_a2_r3" site2="m20_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m19_seg5L" body2="m19_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m19_h5Ltop_a1" site2="m19_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Ltop_a2" site2="m19_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Rtop_a1" site2="m19_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Rtop_a2" site2="m19_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m19_seg5L_r1" body2="m19_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m19_h5Ltop_a1_r1" site2="m19_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Ltop_a2_r1" site2="m19_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Rtop_a1_r1" site2="m19_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Rtop_a2_r1" site2="m19_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m19_seg5L_r2" body2="m19_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m19_h5Ltop_a1_r2" site2="m19_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Ltop_a2_r2" site2="m19_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Rtop_a1_r2" site2="m19_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Rtop_a2_r2" site2="m19_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m19_seg5L_r3" body2="m19_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m19_h5Ltop_a1_r3" site2="m19_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Ltop_a2_r3" site2="m19_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Rtop_a1_r3" site2="m19_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m19_h5Rtop_a2_r3" site2="m19_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m18_seg5L" body2="m18_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m18_h5Ltop_a1" site2="m18_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Ltop_a2" site2="m18_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Rtop_a1" site2="m18_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Rtop_a2" site2="m18_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m18_seg5L_r1" body2="m18_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m18_h5Ltop_a1_r1" site2="m18_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Ltop_a2_r1" site2="m18_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Rtop_a1_r1" site2="m18_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Rtop_a2_r1" site2="m18_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m18_seg5L_r2" body2="m18_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m18_h5Ltop_a1_r2" site2="m18_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Ltop_a2_r2" site2="m18_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Rtop_a1_r2" site2="m18_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Rtop_a2_r2" site2="m18_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m18_seg5L_r3" body2="m18_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m18_h5Ltop_a1_r3" site2="m18_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Ltop_a2_r3" site2="m18_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Rtop_a1_r3" site2="m18_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m18_h5Rtop_a2_r3" site2="m18_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m17_seg5L" body2="m17_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m17_h5Ltop_a1" site2="m17_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Ltop_a2" site2="m17_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Rtop_a1" site2="m17_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Rtop_a2" site2="m17_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m17_seg5L_r1" body2="m17_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m17_h5Ltop_a1_r1" site2="m17_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Ltop_a2_r1" site2="m17_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Rtop_a1_r1" site2="m17_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Rtop_a2_r1" site2="m17_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m17_seg5L_r2" body2="m17_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m17_h5Ltop_a1_r2" site2="m17_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Ltop_a2_r2" site2="m17_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Rtop_a1_r2" site2="m17_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Rtop_a2_r2" site2="m17_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m17_seg5L_r3" body2="m17_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m17_h5Ltop_a1_r3" site2="m17_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Ltop_a2_r3" site2="m17_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Rtop_a1_r3" site2="m17_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m17_h5Rtop_a2_r3" site2="m17_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m16_seg5L" body2="m16_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m16_h5Ltop_a1" site2="m16_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Ltop_a2" site2="m16_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Rtop_a1" site2="m16_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Rtop_a2" site2="m16_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m16_seg5L_r1" body2="m16_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m16_h5Ltop_a1_r1" site2="m16_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Ltop_a2_r1" site2="m16_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Rtop_a1_r1" site2="m16_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Rtop_a2_r1" site2="m16_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m16_seg5L_r2" body2="m16_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m16_h5Ltop_a1_r2" site2="m16_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Ltop_a2_r2" site2="m16_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Rtop_a1_r2" site2="m16_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Rtop_a2_r2" site2="m16_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m16_seg5L_r3" body2="m16_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m16_h5Ltop_a1_r3" site2="m16_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Ltop_a2_r3" site2="m16_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Rtop_a1_r3" site2="m16_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m16_h5Rtop_a2_r3" site2="m16_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m15_seg5L" body2="m15_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m15_h5Ltop_a1" site2="m15_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Ltop_a2" site2="m15_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Rtop_a1" site2="m15_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Rtop_a2" site2="m15_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m15_seg5L_r1" body2="m15_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m15_h5Ltop_a1_r1" site2="m15_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Ltop_a2_r1" site2="m15_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Rtop_a1_r1" site2="m15_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Rtop_a2_r1" site2="m15_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m15_seg5L_r2" body2="m15_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m15_h5Ltop_a1_r2" site2="m15_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Ltop_a2_r2" site2="m15_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Rtop_a1_r2" site2="m15_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Rtop_a2_r2" site2="m15_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m15_seg5L_r3" body2="m15_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m15_h5Ltop_a1_r3" site2="m15_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Ltop_a2_r3" site2="m15_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Rtop_a1_r3" site2="m15_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m15_h5Rtop_a2_r3" site2="m15_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m14_seg5L" body2="m14_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m14_h5Ltop_a1" site2="m14_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Ltop_a2" site2="m14_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Rtop_a1" site2="m14_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Rtop_a2" site2="m14_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m14_seg5L_r1" body2="m14_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m14_h5Ltop_a1_r1" site2="m14_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Ltop_a2_r1" site2="m14_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Rtop_a1_r1" site2="m14_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Rtop_a2_r1" site2="m14_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m14_seg5L_r2" body2="m14_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m14_h5Ltop_a1_r2" site2="m14_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Ltop_a2_r2" site2="m14_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Rtop_a1_r2" site2="m14_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Rtop_a2_r2" site2="m14_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m14_seg5L_r3" body2="m14_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m14_h5Ltop_a1_r3" site2="m14_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Ltop_a2_r3" site2="m14_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Rtop_a1_r3" site2="m14_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m14_h5Rtop_a2_r3" site2="m14_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m13_seg5L" body2="m13_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m13_h5Ltop_a1" site2="m13_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Ltop_a2" site2="m13_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Rtop_a1" site2="m13_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Rtop_a2" site2="m13_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m13_seg5L_r1" body2="m13_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m13_h5Ltop_a1_r1" site2="m13_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Ltop_a2_r1" site2="m13_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Rtop_a1_r1" site2="m13_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Rtop_a2_r1" site2="m13_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m13_seg5L_r2" body2="m13_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m13_h5Ltop_a1_r2" site2="m13_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Ltop_a2_r2" site2="m13_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Rtop_a1_r2" site2="m13_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Rtop_a2_r2" site2="m13_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m13_seg5L_r3" body2="m13_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m13_h5Ltop_a1_r3" site2="m13_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Ltop_a2_r3" site2="m13_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Rtop_a1_r3" site2="m13_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m13_h5Rtop_a2_r3" site2="m13_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m12_seg5L" body2="m12_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m12_h5Ltop_a1" site2="m12_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Ltop_a2" site2="m12_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Rtop_a1" site2="m12_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Rtop_a2" site2="m12_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m12_seg5L_r1" body2="m12_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m12_h5Ltop_a1_r1" site2="m12_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Ltop_a2_r1" site2="m12_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Rtop_a1_r1" site2="m12_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Rtop_a2_r1" site2="m12_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m12_seg5L_r2" body2="m12_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m12_h5Ltop_a1_r2" site2="m12_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Ltop_a2_r2" site2="m12_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Rtop_a1_r2" site2="m12_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Rtop_a2_r2" site2="m12_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m12_seg5L_r3" body2="m12_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m12_h5Ltop_a1_r3" site2="m12_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Ltop_a2_r3" site2="m12_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Rtop_a1_r3" site2="m12_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m12_h5Rtop_a2_r3" site2="m12_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m11_seg5L" body2="m11_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m11_h5Ltop_a1" site2="m11_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Ltop_a2" site2="m11_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Rtop_a1" site2="m11_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Rtop_a2" site2="m11_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m11_seg5L_r1" body2="m11_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m11_h5Ltop_a1_r1" site2="m11_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Ltop_a2_r1" site2="m11_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Rtop_a1_r1" site2="m11_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Rtop_a2_r1" site2="m11_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m11_seg5L_r2" body2="m11_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m11_h5Ltop_a1_r2" site2="m11_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Ltop_a2_r2" site2="m11_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Rtop_a1_r2" site2="m11_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Rtop_a2_r2" site2="m11_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m11_seg5L_r3" body2="m11_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m11_h5Ltop_a1_r3" site2="m11_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Ltop_a2_r3" site2="m11_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Rtop_a1_r3" site2="m11_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m11_h5Rtop_a2_r3" site2="m11_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m10_seg5L" body2="m10_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m10_h5Ltop_a1" site2="m10_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Ltop_a2" site2="m10_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Rtop_a1" site2="m10_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Rtop_a2" site2="m10_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m10_seg5L_r1" body2="m10_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m10_h5Ltop_a1_r1" site2="m10_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Ltop_a2_r1" site2="m10_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Rtop_a1_r1" site2="m10_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Rtop_a2_r1" site2="m10_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m10_seg5L_r2" body2="m10_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m10_h5Ltop_a1_r2" site2="m10_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Ltop_a2_r2" site2="m10_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Rtop_a1_r2" site2="m10_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Rtop_a2_r2" site2="m10_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m10_seg5L_r3" body2="m10_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m10_h5Ltop_a1_r3" site2="m10_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Ltop_a2_r3" site2="m10_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Rtop_a1_r3" site2="m10_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m10_h5Rtop_a2_r3" site2="m10_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m9_seg5L" body2="m9_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m9_h5Ltop_a1" site2="m9_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Ltop_a2" site2="m9_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Rtop_a1" site2="m9_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Rtop_a2" site2="m9_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m9_seg5L_r1" body2="m9_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m9_h5Ltop_a1_r1" site2="m9_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Ltop_a2_r1" site2="m9_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Rtop_a1_r1" site2="m9_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Rtop_a2_r1" site2="m9_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m9_seg5L_r2" body2="m9_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m9_h5Ltop_a1_r2" site2="m9_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Ltop_a2_r2" site2="m9_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Rtop_a1_r2" site2="m9_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Rtop_a2_r2" site2="m9_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m9_seg5L_r3" body2="m9_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m9_h5Ltop_a1_r3" site2="m9_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Ltop_a2_r3" site2="m9_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Rtop_a1_r3" site2="m9_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m9_h5Rtop_a2_r3" site2="m9_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m8_seg5L" body2="m8_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m8_h5Ltop_a1" site2="m8_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Ltop_a2" site2="m8_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Rtop_a1" site2="m8_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Rtop_a2" site2="m8_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m8_seg5L_r1" body2="m8_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m8_h5Ltop_a1_r1" site2="m8_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Ltop_a2_r1" site2="m8_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Rtop_a1_r1" site2="m8_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Rtop_a2_r1" site2="m8_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m8_seg5L_r2" body2="m8_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m8_h5Ltop_a1_r2" site2="m8_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Ltop_a2_r2" site2="m8_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Rtop_a1_r2" site2="m8_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Rtop_a2_r2" site2="m8_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m8_seg5L_r3" body2="m8_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m8_h5Ltop_a1_r3" site2="m8_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Ltop_a2_r3" site2="m8_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Rtop_a1_r3" site2="m8_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m8_h5Rtop_a2_r3" site2="m8_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m7_seg5L" body2="m7_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m7_h5Ltop_a1" site2="m7_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Ltop_a2" site2="m7_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Rtop_a1" site2="m7_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Rtop_a2" site2="m7_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m7_seg5L_r1" body2="m7_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m7_h5Ltop_a1_r1" site2="m7_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Ltop_a2_r1" site2="m7_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Rtop_a1_r1" site2="m7_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Rtop_a2_r1" site2="m7_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m7_seg5L_r2" body2="m7_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m7_h5Ltop_a1_r2" site2="m7_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Ltop_a2_r2" site2="m7_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Rtop_a1_r2" site2="m7_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Rtop_a2_r2" site2="m7_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m7_seg5L_r3" body2="m7_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m7_h5Ltop_a1_r3" site2="m7_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Ltop_a2_r3" site2="m7_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Rtop_a1_r3" site2="m7_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m7_h5Rtop_a2_r3" site2="m7_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m6_seg5L" body2="m6_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m6_h5Ltop_a1" site2="m6_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Ltop_a2" site2="m6_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Rtop_a1" site2="m6_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Rtop_a2" site2="m6_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m6_seg5L_r1" body2="m6_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m6_h5Ltop_a1_r1" site2="m6_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Ltop_a2_r1" site2="m6_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Rtop_a1_r1" site2="m6_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Rtop_a2_r1" site2="m6_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m6_seg5L_r2" body2="m6_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m6_h5Ltop_a1_r2" site2="m6_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Ltop_a2_r2" site2="m6_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Rtop_a1_r2" site2="m6_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Rtop_a2_r2" site2="m6_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m6_seg5L_r3" body2="m6_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m6_h5Ltop_a1_r3" site2="m6_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Ltop_a2_r3" site2="m6_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Rtop_a1_r3" site2="m6_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m6_h5Rtop_a2_r3" site2="m6_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m5_seg5L" body2="m5_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m5_h5Ltop_a1" site2="m5_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Ltop_a2" site2="m5_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Rtop_a1" site2="m5_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Rtop_a2" site2="m5_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m5_seg5L_r1" body2="m5_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m5_h5Ltop_a1_r1" site2="m5_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Ltop_a2_r1" site2="m5_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Rtop_a1_r1" site2="m5_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Rtop_a2_r1" site2="m5_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m5_seg5L_r2" body2="m5_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m5_h5Ltop_a1_r2" site2="m5_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Ltop_a2_r2" site2="m5_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Rtop_a1_r2" site2="m5_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Rtop_a2_r2" site2="m5_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m5_seg5L_r3" body2="m5_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m5_h5Ltop_a1_r3" site2="m5_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Ltop_a2_r3" site2="m5_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Rtop_a1_r3" site2="m5_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m5_h5Rtop_a2_r3" site2="m5_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m4_seg5L" body2="m4_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m4_h5Ltop_a1" site2="m4_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Ltop_a2" site2="m4_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Rtop_a1" site2="m4_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Rtop_a2" site2="m4_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m4_seg5L_r1" body2="m4_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m4_h5Ltop_a1_r1" site2="m4_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Ltop_a2_r1" site2="m4_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Rtop_a1_r1" site2="m4_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Rtop_a2_r1" site2="m4_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m4_seg5L_r2" body2="m4_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m4_h5Ltop_a1_r2" site2="m4_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Ltop_a2_r2" site2="m4_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Rtop_a1_r2" site2="m4_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Rtop_a2_r2" site2="m4_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m4_seg5L_r3" body2="m4_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m4_h5Ltop_a1_r3" site2="m4_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Ltop_a2_r3" site2="m4_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Rtop_a1_r3" site2="m4_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m4_h5Rtop_a2_r3" site2="m4_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m3_seg5L" body2="m3_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m3_h5Ltop_a1" site2="m3_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Ltop_a2" site2="m3_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Rtop_a1" site2="m3_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Rtop_a2" site2="m3_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m3_seg5L_r1" body2="m3_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m3_h5Ltop_a1_r1" site2="m3_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Ltop_a2_r1" site2="m3_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Rtop_a1_r1" site2="m3_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Rtop_a2_r1" site2="m3_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m3_seg5L_r2" body2="m3_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m3_h5Ltop_a1_r2" site2="m3_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Ltop_a2_r2" site2="m3_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Rtop_a1_r2" site2="m3_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Rtop_a2_r2" site2="m3_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m3_seg5L_r3" body2="m3_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m3_h5Ltop_a1_r3" site2="m3_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Ltop_a2_r3" site2="m3_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Rtop_a1_r3" site2="m3_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m3_h5Rtop_a2_r3" site2="m3_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m2_seg5L" body2="m2_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m2_h5Ltop_a1" site2="m2_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Ltop_a2" site2="m2_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Rtop_a1" site2="m2_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Rtop_a2" site2="m2_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m2_seg5L_r1" body2="m2_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m2_h5Ltop_a1_r1" site2="m2_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Ltop_a2_r1" site2="m2_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Rtop_a1_r1" site2="m2_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Rtop_a2_r1" site2="m2_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m2_seg5L_r2" body2="m2_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m2_h5Ltop_a1_r2" site2="m2_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Ltop_a2_r2" site2="m2_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Rtop_a1_r2" site2="m2_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Rtop_a2_r2" site2="m2_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m2_seg5L_r3" body2="m2_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m2_h5Ltop_a1_r3" site2="m2_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Ltop_a2_r3" site2="m2_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Rtop_a1_r3" site2="m2_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m2_h5Rtop_a2_r3" site2="m2_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m1_seg5L" body2="m1_seg5R" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m1_h5Ltop_a1" site2="m1_h5Ltop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Ltop_a2" site2="m1_h5Ltop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a1" site2="m1_h5Rtop_b1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a2" site2="m1_h5Rtop_b2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m1_seg5L_r1" body2="m1_seg5R_r1" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m1_h5Ltop_a1_r1" site2="m1_h5Ltop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Ltop_a2_r1" site2="m1_h5Ltop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a1_r1" site2="m1_h5Rtop_b1_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a2_r1" site2="m1_h5Rtop_b2_r1" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m1_seg5L_r2" body2="m1_seg5R_r2" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m1_h5Ltop_a1_r2" site2="m1_h5Ltop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Ltop_a2_r2" site2="m1_h5Ltop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a1_r2" site2="m1_h5Rtop_b1_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a2_r2" site2="m1_h5Rtop_b2_r2" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <weld body1="m1_seg5L_r3" body2="m1_seg5R_r3" solref="0.01 1" solimp="0.95 0.99 0.002" />
+    <connect site1="m1_h5Ltop_a1_r3" site2="m1_h5Ltop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Ltop_a2_r3" site2="m1_h5Ltop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a1_r3" site2="m1_h5Rtop_b1_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+    <connect site1="m1_h5Rtop_a2_r3" site2="m1_h5Rtop_b2_r3" solref="0.001 1" solimp="0.99 0.999 0.001" />
+  </equality>
+  <tendon>
+    <spatial name="rope_add1" width="0.0005" limited="true" range="0 0.5">
+      <site site="drag_add1"/>
+      <site site="rope_add1_1_bottom"/>
+      <site site="rope_add1_2_bottom"/>
+      <site site="rope_add1_3_bottom"/>
+      <site site="rope_add1_4_bottom"/>
+    </spatial>
+    <spatial name="rope_add2" width="0.0005" limited="true" range="0 0.5">
+      <site site="drag_add2"/>
+      <site site="rope_add2_1_bottom"/>
+      <site site="rope_add2_2_bottom"/>
+      <site site="rope_add2_3_bottom"/>
+      <site site="rope_add2_4_bottom"/>
+    </spatial>
+    <spatial name="rope_add3" width="0.0005" limited="true" range="0 0.5">
+      <site site="drag_add3"/>
+      <site site="rope_add3_1_bottom"/>
+      <site site="rope_add3_2_bottom"/>
+      <site site="rope_add3_3_bottom"/>
+      <site site="rope_add3_4_bottom"/>
+    </spatial>
+    <spatial name="rope1" width="0.0005" limited="true" range="0 1.5" rgba="1 0 0 1">
+      <site site="drag1" />
+      <site site="rope1_1_bottom" />
+      <site site="rope1_2_bottom" />
+      <site site="rope1_3_bottom" />
+      <site site="rope1_4_bottom" />
+      <site site="rope1_5_bottom" />
+      <site site="rope1_6_bottom" />
+      <site site="rope1_7_bottom" />
+      <site site="rope1_8_bottom" />
+      <site site="rope1_9_bottom" />
+      <site site="rope1_10_bottom" />
+      <site site="rope1_11_bottom" />
+      <site site="rope1_12_bottom" />
+      <site site="rope1_13_bottom" />
+      <site site="rope1_14_bottom" />
+      <site site="rope1_15_bottom" />
+      <site site="rope1_16_bottom" />
+      <site site="rope1_17_bottom" />
+      <site site="rope1_18_bottom" />
+      <site site="rope1_19_bottom" />
+      <site site="rope1_20_bottom" />
+      <site site="attach_small" />
+    </spatial>
+    <spatial name="rope2" width="0.0005" limited="true" range="0 1.5">
+      <site site="drag2" />
+      <site site="rope2_1_bottom" />
+      <site site="rope2_2_bottom" />
+      <site site="rope2_3_bottom" />
+      <site site="rope2_4_bottom" />
+      <site site="rope2_5_bottom" />
+      <site site="rope2_6_bottom" />
+      <site site="rope2_7_bottom" />
+      <site site="rope2_8_bottom" />
+      <site site="rope2_9_bottom" />
+      <site site="rope2_10_bottom" />
+      <site site="rope2_11_bottom" />
+      <site site="rope2_12_bottom" />
+      <site site="rope2_13_bottom" />
+      <site site="rope2_14_bottom" />
+      <site site="rope2_15_bottom" />
+      <site site="rope2_16_bottom" />
+      <site site="rope2_17_bottom" />
+      <site site="rope2_18_bottom" />
+      <site site="rope2_19_bottom" />
+      <site site="rope2_20_bottom" />
+      <site site="attach_small" />
+    </spatial>
+    <spatial name="rope3" width="0.0005" limited="true" range="0 1.5">
+      <site site="drag3" />
+      <site site="rope3_1_bottom" />
+      <site site="rope3_2_bottom" />
+      <site site="rope3_3_bottom" />
+      <site site="rope3_4_bottom" />
+      <site site="rope3_5_bottom" />
+      <site site="rope3_6_bottom" />
+      <site site="rope3_7_bottom" />
+      <site site="rope3_8_bottom" />
+      <site site="rope3_9_bottom" />
+      <site site="rope3_10_bottom" />
+      <site site="rope3_11_bottom" />
+      <site site="rope3_12_bottom" />
+      <site site="rope3_13_bottom" />
+      <site site="rope3_14_bottom" />
+      <site site="rope3_15_bottom" />
+      <site site="rope3_16_bottom" />
+      <site site="rope3_17_bottom" />
+      <site site="rope3_18_bottom" />
+      <site site="rope3_19_bottom" />
+      <site site="rope3_20_bottom" />
+      <site site="attach_small" />
+    </spatial>
+    <fixed name="m20_fold_mode">
+      <joint joint="m20_j_bottom_seg2" coef=" 1" />
+      <joint joint="m20_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m20_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m20_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m20_j_seg3R_seg6" coef="-1" />
+      <joint joint="m20_j_seg3L_seg4" coef="-1" />
+      <joint joint="m20_j_seg5R_seg6" coef="1" />
+      <joint joint="m20_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m20_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m20_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m20_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m20_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m20_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m20_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m20_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m20_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m20_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m20_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m20_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m20_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m20_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m20_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m20_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m20_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m20_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m20_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m20_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m20_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m19_fold_mode">
+      <joint joint="m19_j_bottom_seg2" coef=" 1" />
+      <joint joint="m19_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m19_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m19_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m19_j_seg3R_seg6" coef="-1" />
+      <joint joint="m19_j_seg3L_seg4" coef="-1" />
+      <joint joint="m19_j_seg5R_seg6" coef="1" />
+      <joint joint="m19_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m19_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m19_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m19_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m19_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m19_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m19_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m19_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m19_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m19_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m19_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m19_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m19_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m19_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m19_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m19_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m19_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m19_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m19_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m19_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m19_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m18_fold_mode">
+      <joint joint="m18_j_bottom_seg2" coef=" 1" />
+      <joint joint="m18_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m18_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m18_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m18_j_seg3R_seg6" coef="-1" />
+      <joint joint="m18_j_seg3L_seg4" coef="-1" />
+      <joint joint="m18_j_seg5R_seg6" coef="1" />
+      <joint joint="m18_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m18_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m18_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m18_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m18_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m18_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m18_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m18_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m18_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m18_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m18_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m18_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m18_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m18_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m18_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m18_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m18_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m18_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m18_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m18_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m18_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m17_fold_mode">
+      <joint joint="m17_j_bottom_seg2" coef=" 1" />
+      <joint joint="m17_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m17_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m17_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m17_j_seg3R_seg6" coef="-1" />
+      <joint joint="m17_j_seg3L_seg4" coef="-1" />
+      <joint joint="m17_j_seg5R_seg6" coef="1" />
+      <joint joint="m17_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m17_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m17_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m17_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m17_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m17_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m17_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m17_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m17_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m17_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m17_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m17_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m17_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m17_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m17_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m17_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m17_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m17_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m17_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m17_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m17_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m16_fold_mode">
+      <joint joint="m16_j_bottom_seg2" coef=" 1" />
+      <joint joint="m16_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m16_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m16_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m16_j_seg3R_seg6" coef="-1" />
+      <joint joint="m16_j_seg3L_seg4" coef="-1" />
+      <joint joint="m16_j_seg5R_seg6" coef="1" />
+      <joint joint="m16_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m16_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m16_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m16_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m16_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m16_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m16_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m16_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m16_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m16_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m16_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m16_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m16_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m16_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m16_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m16_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m16_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m16_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m16_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m16_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m16_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m15_fold_mode">
+      <joint joint="m15_j_bottom_seg2" coef=" 1" />
+      <joint joint="m15_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m15_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m15_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m15_j_seg3R_seg6" coef="-1" />
+      <joint joint="m15_j_seg3L_seg4" coef="-1" />
+      <joint joint="m15_j_seg5R_seg6" coef="1" />
+      <joint joint="m15_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m15_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m15_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m15_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m15_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m15_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m15_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m15_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m15_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m15_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m15_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m15_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m15_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m15_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m15_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m15_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m15_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m15_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m15_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m15_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m15_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m14_fold_mode">
+      <joint joint="m14_j_bottom_seg2" coef=" 1" />
+      <joint joint="m14_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m14_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m14_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m14_j_seg3R_seg6" coef="-1" />
+      <joint joint="m14_j_seg3L_seg4" coef="-1" />
+      <joint joint="m14_j_seg5R_seg6" coef="1" />
+      <joint joint="m14_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m14_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m14_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m14_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m14_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m14_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m14_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m14_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m14_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m14_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m14_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m14_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m14_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m14_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m14_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m14_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m14_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m14_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m14_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m14_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m14_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m13_fold_mode">
+      <joint joint="m13_j_bottom_seg2" coef=" 1" />
+      <joint joint="m13_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m13_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m13_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m13_j_seg3R_seg6" coef="-1" />
+      <joint joint="m13_j_seg3L_seg4" coef="-1" />
+      <joint joint="m13_j_seg5R_seg6" coef="1" />
+      <joint joint="m13_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m13_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m13_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m13_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m13_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m13_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m13_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m13_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m13_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m13_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m13_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m13_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m13_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m13_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m13_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m13_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m13_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m13_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m13_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m13_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m13_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m12_fold_mode">
+      <joint joint="m12_j_bottom_seg2" coef=" 1" />
+      <joint joint="m12_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m12_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m12_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m12_j_seg3R_seg6" coef="-1" />
+      <joint joint="m12_j_seg3L_seg4" coef="-1" />
+      <joint joint="m12_j_seg5R_seg6" coef="1" />
+      <joint joint="m12_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m12_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m12_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m12_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m12_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m12_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m12_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m12_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m12_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m12_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m12_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m12_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m12_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m12_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m12_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m12_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m12_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m12_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m12_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m12_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m12_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m11_fold_mode">
+      <joint joint="m11_j_bottom_seg2" coef=" 1" />
+      <joint joint="m11_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m11_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m11_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m11_j_seg3R_seg6" coef="-1" />
+      <joint joint="m11_j_seg3L_seg4" coef="-1" />
+      <joint joint="m11_j_seg5R_seg6" coef="1" />
+      <joint joint="m11_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m11_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m11_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m11_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m11_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m11_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m11_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m11_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m11_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m11_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m11_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m11_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m11_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m11_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m11_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m11_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m11_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m11_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m11_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m11_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m11_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m10_fold_mode">
+      <joint joint="m10_j_bottom_seg2" coef=" 1" />
+      <joint joint="m10_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m10_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m10_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m10_j_seg3R_seg6" coef="-1" />
+      <joint joint="m10_j_seg3L_seg4" coef="-1" />
+      <joint joint="m10_j_seg5R_seg6" coef="1" />
+      <joint joint="m10_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m10_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m10_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m10_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m10_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m10_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m10_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m10_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m10_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m10_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m10_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m10_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m10_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m10_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m10_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m10_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m10_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m10_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m10_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m10_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m10_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m9_fold_mode">
+      <joint joint="m9_j_bottom_seg2" coef=" 1" />
+      <joint joint="m9_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m9_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m9_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m9_j_seg3R_seg6" coef="-1" />
+      <joint joint="m9_j_seg3L_seg4" coef="-1" />
+      <joint joint="m9_j_seg5R_seg6" coef="1" />
+      <joint joint="m9_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m9_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m9_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m9_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m9_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m9_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m9_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m9_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m9_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m9_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m9_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m9_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m9_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m9_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m9_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m9_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m9_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m9_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m9_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m9_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m9_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m8_fold_mode">
+      <joint joint="m8_j_bottom_seg2" coef=" 1" />
+      <joint joint="m8_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m8_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m8_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m8_j_seg3R_seg6" coef="-1" />
+      <joint joint="m8_j_seg3L_seg4" coef="-1" />
+      <joint joint="m8_j_seg5R_seg6" coef="1" />
+      <joint joint="m8_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m8_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m8_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m8_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m8_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m8_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m8_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m8_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m8_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m8_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m8_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m8_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m8_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m8_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m8_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m8_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m8_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m8_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m8_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m8_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m8_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m7_fold_mode">
+      <joint joint="m7_j_bottom_seg2" coef=" 1" />
+      <joint joint="m7_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m7_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m7_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m7_j_seg3R_seg6" coef="-1" />
+      <joint joint="m7_j_seg3L_seg4" coef="-1" />
+      <joint joint="m7_j_seg5R_seg6" coef="1" />
+      <joint joint="m7_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m7_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m7_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m7_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m7_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m7_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m7_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m7_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m7_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m7_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m7_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m7_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m7_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m7_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m7_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m7_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m7_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m7_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m7_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m7_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m7_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m6_fold_mode">
+      <joint joint="m6_j_bottom_seg2" coef=" 1" />
+      <joint joint="m6_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m6_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m6_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m6_j_seg3R_seg6" coef="-1" />
+      <joint joint="m6_j_seg3L_seg4" coef="-1" />
+      <joint joint="m6_j_seg5R_seg6" coef="1" />
+      <joint joint="m6_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m6_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m6_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m6_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m6_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m6_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m6_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m6_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m6_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m6_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m6_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m6_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m6_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m6_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m6_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m6_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m6_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m6_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m6_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m6_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m6_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m5_fold_mode">
+      <joint joint="m5_j_bottom_seg2" coef=" 1" />
+      <joint joint="m5_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m5_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m5_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m5_j_seg3R_seg6" coef="-1" />
+      <joint joint="m5_j_seg3L_seg4" coef="-1" />
+      <joint joint="m5_j_seg5R_seg6" coef="1" />
+      <joint joint="m5_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m5_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m5_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m5_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m5_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m5_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m5_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m5_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m5_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m5_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m5_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m5_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m5_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m5_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m5_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m5_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m5_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m5_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m5_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m5_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m5_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m4_fold_mode">
+      <joint joint="m4_j_bottom_seg2" coef=" 1" />
+      <joint joint="m4_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m4_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m4_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m4_j_seg3R_seg6" coef="-1" />
+      <joint joint="m4_j_seg3L_seg4" coef="-1" />
+      <joint joint="m4_j_seg5R_seg6" coef="1" />
+      <joint joint="m4_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m4_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m4_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m4_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m4_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m4_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m4_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m4_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m4_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m4_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m4_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m4_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m4_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m4_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m4_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m4_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m4_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m4_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m4_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m4_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m4_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m3_fold_mode">
+      <joint joint="m3_j_bottom_seg2" coef=" 1" />
+      <joint joint="m3_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m3_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m3_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m3_j_seg3R_seg6" coef="-1" />
+      <joint joint="m3_j_seg3L_seg4" coef="-1" />
+      <joint joint="m3_j_seg5R_seg6" coef="1" />
+      <joint joint="m3_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m3_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m3_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m3_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m3_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m3_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m3_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m3_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m3_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m3_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m3_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m3_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m3_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m3_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m3_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m3_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m3_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m3_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m3_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m3_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m3_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m2_fold_mode">
+      <joint joint="m2_j_bottom_seg2" coef=" 1" />
+      <joint joint="m2_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m2_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m2_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m2_j_seg3R_seg6" coef="-1" />
+      <joint joint="m2_j_seg3L_seg4" coef="-1" />
+      <joint joint="m2_j_seg5R_seg6" coef="1" />
+      <joint joint="m2_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m2_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m2_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m2_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m2_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m2_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m2_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m2_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m2_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m2_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m2_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m2_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m2_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m2_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m2_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m2_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m2_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m2_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m2_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m2_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m2_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+    <fixed name="m1_fold_mode">
+      <joint joint="m1_j_bottom_seg2" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3L" coef=" 1" />
+      <joint joint="m1_j_seg4_seg5L" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3R" coef=" 1" />
+      <joint joint="m1_j_seg3R_seg6" coef="-1" />
+      <joint joint="m1_j_seg3L_seg4" coef="-1" />
+      <joint joint="m1_j_seg5R_seg6" coef="1" />
+      <joint joint="m1_j_bottom_seg2_r1" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3L_r1" coef=" 1" />
+      <joint joint="m1_j_seg4_seg5L_r1" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3R_r1" coef=" 1" />
+      <joint joint="m1_j_seg3R_seg6_r1" coef="-1" />
+      <joint joint="m1_j_seg3L_seg4_r1" coef="-1" />
+      <joint joint="m1_j_seg5R_seg6_r1" coef="1" />
+      <joint joint="m1_j_bottom_seg2_r2" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3L_r2" coef=" 1" />
+      <joint joint="m1_j_seg4_seg5L_r2" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3R_r2" coef=" 1" />
+      <joint joint="m1_j_seg3R_seg6_r2" coef="-1" />
+      <joint joint="m1_j_seg3L_seg4_r2" coef="-1" />
+      <joint joint="m1_j_seg5R_seg6_r2" coef="1" />
+      <joint joint="m1_j_bottom_seg2_r3" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3L_r3" coef=" 1" />
+      <joint joint="m1_j_seg4_seg5L_r3" coef=" 1" />
+      <joint joint="m1_j_seg2_seg3R_r3" coef=" 1" />
+      <joint joint="m1_j_seg3R_seg6_r3" coef="-1" />
+      <joint joint="m1_j_seg3L_seg4_r3" coef="-1" />
+      <joint joint="m1_j_seg5R_seg6_r3" coef="1" />
+    </fixed>
+  </tendon>
+  <actuator>
+    <motor name="pull_rope1" tendon="rope1" gear="-1" ctrlrange="0 10" />
+    <motor name="pull_rope2" tendon="rope2" gear="-1" ctrlrange="0 10" />
+    <motor name="pull_rope3" tendon="rope3" gear="-1" ctrlrange="0 10" />
+    <motor name="pull_rope_add1" tendon="rope_add1" gear="-1" ctrlrange="0 15" />
+    <motor name="pull_rope_add2" tendon="rope_add2" gear="-1" ctrlrange="0 15" />
+    <motor name="pull_rope_add3" tendon="rope_add3" gear="-1" ctrlrange="0 15" />
+    <position name="plate_x_ctrl" joint="plate_tx" kp="1000" kv="150" ctrlrange="-1.5 1.5" />
+    <position name="plate_y_ctrl" joint="plate_ty" kp="1000" kv="150" ctrlrange="-1.0 1.0" />
+  </actuator>
+</mujoco>

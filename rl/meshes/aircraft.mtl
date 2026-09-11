@@ -1,0 +1,26 @@
+# Blender 5.0.1 MTL File: 'aircraft.blend'
+# www.blender.org
+
+newmtl Passanger_room_mat
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Passanger_body_1002_BaseColor.png
+map_Ns Passanger_body_1002_Roughness.png
+map_refl Passanger_body_1002_Metalness.png
+map_Ke Passanger_body_1002_Emissive.png
+map_Bump -bm 1.000000 Passanger_body_1002_Normal.png
+
+newmtl Passangers_Seats_mat
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd Passanger_body_1012_BaseColor.png
+map_Ns Passanger_body_1012_Roughness.png
+map_refl Passanger_body_1012_Metalness.png
+map_Bump -bm 1.000000 Passanger_body_1012_Normal.png
