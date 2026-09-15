@@ -91,14 +91,6 @@ The simulation script supports:
 ## Simulation Result
 
 <p>
-  The image shows the initial posture of the soft robotic arm in the simulation.
-</p>
-
-<p align="center">
-  <img src="images/scene.png" alt="Initial posture" width="70%">
-</p>
-
-<p>
   The image shows the robotic arm grasping the target object.
 </p>
 
